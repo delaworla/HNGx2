@@ -26,7 +26,7 @@ async def create_person(person: Person):
     person_dict = person.dict()
     person_dict['id'] = randrange(0, 10000000)
     my_people.append()
-    return person
+    return {"data":person_dict}
 
 
 @app.get("/api/person/{person_id}", response_model=Person)
