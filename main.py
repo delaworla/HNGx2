@@ -22,11 +22,11 @@ def get_persons():
 
 
 @app.post("/api/person/", response_model=Person)
-async def create_person(person: Person):
+def create_person(person: Person):
     person_dict = person.dict()
     person_dict['id'] = randrange(0, 10000000)
     my_people.append(person_dict)
-    return {"data":person_dict}
+    return {"data": person_dict}
 
 
 @app.get("/api/person/{person_id}", response_model=Person)
