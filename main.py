@@ -36,6 +36,6 @@ def find_person(id):
 
 
 @app.get("/api/person/{id}")
-async def read_person(id):
-    person = find_person(int(id))
+async def read_person(id: int):
+    person = find_person(id)
     return {"data": person}
