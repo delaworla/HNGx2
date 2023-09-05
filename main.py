@@ -38,5 +38,6 @@ def find_person(id):
 @app.get("/api/person/{id}")
 async def read_person(id: int, response: Response):
     person = find_person(id)
-    if not person
+    if not person:
+        response.status_code = 404
     return {"data": person}
