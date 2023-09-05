@@ -25,8 +25,8 @@ def get_persons():
 def create_person(person: Person):
     person_dict = person.dict()
     person_dict['id'] = randrange(0, 10000000)
-    my_people.append(person_dict)
-    return person_dict
+    data = my_people.append(person_dict)
+    return data
 
 
 @app.get("/api/person/{person_id}", response_model=Person)
