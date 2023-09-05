@@ -40,5 +40,7 @@ def find_person(id):
 async def read_person(id: int, response: Response):
     person = find_person(id)
     if not person:
-        response.status_code = status.H
+        response.status_code = status.HTTP_404_NOT_FOUND
+        return{"message": f"person with id: {id} was not found"}
     return {"data": person}
+ 
