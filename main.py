@@ -31,6 +31,4 @@ async def create_person(person: Person):
 
 @app.get("/api/person/{id}")
 async def read_person(id):
-    if id not in my_people:
-        raise HTTPException(status_code=404, detail="Person not found")
     return {"data": f"Here is person {'id'}"}
