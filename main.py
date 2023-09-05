@@ -25,7 +25,7 @@ def get_persons():
 async def create_person(person: Person):
     person_dict = person.dict()
     person_dict['id'] = randrange(0,10000000)
-    
+    my_people.append()
     return person
 
 
