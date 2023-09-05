@@ -29,8 +29,8 @@ async def create_person(person: Person):
     return {"data": person_dict}
 
 
-@app.get("/api/person/{person_id}")
-async def read_person(id: int):
+@app.get("/api/person/{id}")
+async def read_person(id):
     if id not in my_people:
         raise HTTPException(status_code=404, detail="Person not found")
     return {"data": f"Here is person {'id'}"}
