@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Response
 from pydantic import BaseModel
 from typing import Dict
 from random import randrange
@@ -36,6 +36,6 @@ def find_person(id):
 
 
 @app.get("/api/person/{id}")
-async def read_person(id: int):
+async def read_person(id: int, response: Response):
     person = find_person(id)
     return {"data": person}
