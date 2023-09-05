@@ -29,6 +29,13 @@ async def create_person(person: Person):
     return {"data": person_dict}
 
 
+def find_person(id):
+    for p in my_people:
+        if p['id'] == id:
+            return p
+
+
 @app.get("/api/person/{id}")
 async def read_person(id):
-    return {"data": f"Here is person {'id'}"}
+    person = find_person(int(id))
+    return {"data": person}
