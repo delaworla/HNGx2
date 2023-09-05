@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Response
+from fastapi import FastAPI, HTTPException, Response, status
 from pydantic import BaseModel
 from typing import Dict
 from random import randrange
@@ -39,5 +39,5 @@ def find_person(id):
 async def read_person(id: int, response: Response):
     person = find_person(id)
     if not person:
-        response.status_code = 404
+        response.status_code = status.HTTP_404_NOT_FOUND
     return {"data": person}
