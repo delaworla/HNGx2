@@ -55,5 +55,7 @@ def find_index_person(id):
 @app.delete("/api/person/{id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_person(id: int):
     index = find_index_person(id)
+    if index == None:
+        raise HTTPException(status_code= status.HTTP_404_NOT_FOUND, detail =f"post with id: {id} does not exist")
     my_people.pop(index)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
