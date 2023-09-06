@@ -56,4 +56,4 @@ def find_index_person(id):
 async def delete_person(id: int):
     index = find_index_person(id)
     my_people.pop(index)
-    
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
