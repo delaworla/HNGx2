@@ -49,8 +49,8 @@ def find_index_person(id):
         if p['id'] ==  id:
             return i
  
-@app.delete("/person/{id}")
-async def delete_person():
+@app.delete("/api/person/{id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_person(id: int):
     index = find_index_person(id)
     my_people.pop(index)
     return {'message': 'post was successfully deleted'}
