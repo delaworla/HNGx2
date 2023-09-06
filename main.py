@@ -41,16 +41,19 @@ def find_person(id):
 async def read_person(id: int, response: Response):
     person = find_person(id)
     if not person:
-        raise HTTPException(status_code =status.HTTP_404_NOT_FOUND, detail= f"person with id: {id} was not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"person with id: {id} was not found")
     return {"data": person}
+
 
 def find_index_person(id):
     for i, p in enumerate(my_people):
-        if p['id'] ==  id:
+        if p['id'] == id:
             return i
- 
+
+
 @app.delete("/api/person/{id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_person(id: int):
     index = find_index_person(id)
     my_people.pop(index)
-    return {'message': 'post was successfully deleted'}
+    
