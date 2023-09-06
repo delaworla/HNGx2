@@ -62,5 +62,10 @@ async def delete_person(id: int):
 
 @app.put("/api/person/{id}")
 async def update_person(id: int, person: Person):
-    print(person)
-    return {"message": "post updated successfully"}
+    index = find_index_person(id)
+    if index == None:
+        raise HTTPException(status_code= status.HTTP_404_NOT_FOUND, detail =f"post with id: {id} does not exist")
+    person_dict = person.dict()
+    person_dict['id'] = id
+    my_people[index] = person_dict
+    return {"message": person_dict}
