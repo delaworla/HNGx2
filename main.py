@@ -60,4 +60,7 @@ async def delete_person(id: int):
     my_people.pop(index)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
-@app.update("/api/person/")
+@app.put("/api/person/{id}")
+async def update_person(id: int, person: Person):
+    print(person)
+    return {"message": "post updated successfully"}
