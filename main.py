@@ -12,6 +12,11 @@ class Person(BaseModel):
 my_people = [{"name": "Emma","age": "23","email": "emma@hngx.com", "id":1}, {"name": "Sam","age": "23","email": "sam@hngx.com", "id":2} ]
 
 
+@app.get("/api/persons")
+async def get_persons():
+    return {"data": my_people}
+
+
 @app.post("/api/person/", response_model=Person)
 async def create_person(person: Person):
     person_id = len(db) + 1
