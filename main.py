@@ -13,7 +13,7 @@ my_people = [{"name": "Emma","age": "23","email": "emma@hngx.com", "id":1}, {"na
 
 
 @app.get("/api/persons")
-async def get_persons():
+def get_persons():
     return {"data": my_people}
 
 
