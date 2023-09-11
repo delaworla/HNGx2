@@ -11,4 +11,5 @@ class Person(BaseModel):
     age: str 
     email: str
 
+@app.post("/api/person/", response_model=Person)
     
