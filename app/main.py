@@ -36,7 +36,7 @@ my_people = [{"name": "Emma", "age": "23", "email": "emma@hngx.com",
 
 @app.get("/api/persons")
 def get_persons():
-    cursor.execute("""SELECT * FROM people""")
+    cursor.execute("""SELECT * FROM persons""")
     peoples = cursor.fetchall()
     return {"data": peoples}
 
@@ -88,7 +88,7 @@ async def update_person(id: int, person: Person):
     cursor.execute((""" UPDATE persons SET name=%s, age=%s WHERE id = %s RETURNING * """),(person.name, person.age, str(id)))
     updated_person = cursor.fetchone()
     conn.commit()
-    if update_person == None:
+    if updated_person == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"post with id: {id} does not exist")
    
