@@ -7,4 +7,8 @@ app = FastAPI()
 db: Dict[int, dict] = {}
 
 class Person(BaseModel):
+    name: str
+    age: str 
+    email: str
+
     
