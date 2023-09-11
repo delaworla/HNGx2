@@ -1,4 +1,4 @@
-from fastapi import fastapi, HTTPException
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Dict
 
@@ -12,4 +12,8 @@ class Person(BaseModel):
     email: str
 
 @app.post("/api/person/", response_model=Person)
+async def create_person(person: Person):
+    return person
+    
+
     
