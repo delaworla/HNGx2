@@ -16,7 +16,9 @@ async def create_person(person: Person):
     person_id = len(db) + 1
     db[person_id] = person.dict()
     return person
+
     
-    
+@app.get("/api/person/{person_id}", response_model=Person)
+
 
     
