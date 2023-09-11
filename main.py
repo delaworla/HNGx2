@@ -19,6 +19,7 @@ async def create_person(person: Person):
 
     
 @app.get("/api/person/{person_id}", response_model=Person)
-
+async def read_person(person_id: int):
+    
 
     
