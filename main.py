@@ -4,3 +4,4 @@ from typing import Dict
 
 app = FastAPI()
 
+db: Dict[int, dict] = {}
