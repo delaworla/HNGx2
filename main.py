@@ -12,7 +12,7 @@ class Person(BaseModel):
     email: str
 
 
-@app.get("api/persons")
+@app.get("api/persons/")
 async def get_persons():
     return list(db.values())
 
