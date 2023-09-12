@@ -85,6 +85,9 @@ async def delete_person(id: int):
 
 @app.put("/api/person/{id}")
 async def update_person(id: int, person: Person):
+    cursor.execute((""" UPDATE people SET name=%s, age=%s RETURNING * """),(people.name, people.age))
+    updated_person = cursor.fetchone()
+    
     index = find_index_person(id)
     if index == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
