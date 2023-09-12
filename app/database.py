@@ -4,3 +4,5 @@ from sqlalchemy.orm import sessionmaker
 
 
 SQLALCHEMY_DATABASE_URL = 'postgres://username<>:<password>@<ip-address/hostname>/<database_name>'
+
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
