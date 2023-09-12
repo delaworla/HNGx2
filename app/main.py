@@ -57,7 +57,7 @@ def find_person(id):
 
 
 @app.get("/api/person/{id}")
-async def read_person(id: int, response: Response):
+async def read_person(id: int):
     cursor.execute(""" SELECT * FROM people WHERE id = %s""",(str(id)))
     person = cursor.fetchone()
     if not person:
@@ -74,11 +74,12 @@ def find_index_person(id):
 
 @app.delete("/api/person/{id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_person(id: int):
-    index = find_index_person(id)
-    if index == None:
+    cursor.execute(""" DELETE FROM people WHERE id = %s RETURNING * """ ,(str(id),))
+    deleted_person = cursor.fetchone()
+    conn.commit()
+    if deleted_person == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"post with id: {id} does not exist")
-    my_people.pop(index)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
