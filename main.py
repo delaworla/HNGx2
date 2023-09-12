@@ -1,7 +1,8 @@
-from fastapi import FastAPI, HTTPException, Response, status
+from fastapi import FastAPI, status, HTTPException, Response
 from pydantic import BaseModel
 from typing import Dict
 from random import randrange
+from starlette import status
 import requests
 
 app = FastAPI()
@@ -22,7 +23,7 @@ def get_persons():
     return {"data": my_people}
 
 
-@app.post("/api/person/")
+@app.post("/api/person/", status_code=status.HTTP_201_CREATED)
 async def create_person(person: Person):
     person_dict = person.dict()
     person_dict['id'] = randrange(0, 10000000)
@@ -40,7 +41,13 @@ def find_person(id):
 async def read_person(id: int, response: Response):
     person = find_person(id)
     if not person:
-        response.status_code = status.HTTP_404_NOT_FOUND
-        return{"message": f"person with id: {id} was not found"}
+        raise HTTPException(status_code =status.HTTP_404_NOT_FOUND, detail= f"person with id: {id} was not found")
     return {"data": person}
+
+def find_index_person(id):
+    for i, p enumerate(my_people):
+        if p['id'] ==  id:
+            return p
  
+@app.delete("/person/{id}")
+async def delete_person()
