@@ -10,7 +10,7 @@ from psycopg2.extras import RealDictCursor
 
 app = FastAPI()
 
-
+models.Base.metadata.create_all(bind=engine)
 class Person(BaseModel):
     name: str
     age: str
