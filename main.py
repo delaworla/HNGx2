@@ -45,9 +45,12 @@ async def read_person(id: int, response: Response):
     return {"data": person}
 
 def find_index_person(id):
-    for i, p enumerate(my_people):
+    for i, p in enumerate(my_people):
         if p['id'] ==  id:
-            return p
+            return i
  
 @app.delete("/person/{id}")
-async def delete_person()
+async def delete_person():
+    index = find_index_person(id)
+    my_people.pop(index)
+    return {'message': 'post was successfully deleted'}
