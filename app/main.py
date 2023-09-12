@@ -43,7 +43,7 @@ def get_persons():
 
 @app.post("/api/person/", status_code=status.HTTP_201_CREATED)
 async def create_person(person: Person):
-    cursor.execute(""" INSERT INTO people(name,age) VALUES(%s,%s) RETURNING *""", (person.name, person.age))
+    cursor.execute(""" INSERT INTO persons(name,age) VALUES(%s,%s) RETURNING *""", (person.name, person.age))
     new_people =cursor.fetchone()
     conn.commit()
     return {"data": new_people}
@@ -58,7 +58,7 @@ def find_person(id):
 
 @app.get("/api/person/{id}")
 async def read_person(id: int):
-    cursor.execute(""" SELECT * FROM people WHERE id = %s""",(str(id)))
+    cursor.execute(""" SELECT * FROM persons WHERE id = %s""",(str(id)))
     person = cursor.fetchone()
     if not person:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
@@ -74,7 +74,7 @@ def find_index_person(id):
 
 @app.delete("/api/person/{id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_person(id: int):
-    cursor.execute(""" DELETE FROM people WHERE id = %s RETURNING * """ ,(str(id),))
+    cursor.execute(""" DELETE FROM persons WHERE id = %s RETURNING * """ ,(str(id),))
     deleted_person = cursor.fetchone()
     conn.commit()
     if deleted_person == None:
@@ -85,7 +85,7 @@ async def delete_person(id: int):
 
 @app.put("/api/person/{id}")
 async def update_person(id: int, person: Person):
-    cursor.execute((""" UPDATE people SET name=%s, age=%s RETURNING * """),(people.name, people.age))
+    cursor.execute((""" UPDATE persons SET name=%s, age=%s RETURNING * """),(person.name, person.age))
     updated_person = cursor.fetchone()
     conn.commit()
     if update_person == None:
