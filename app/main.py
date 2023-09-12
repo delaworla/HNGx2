@@ -88,11 +88,8 @@ async def update_person(id: int, person: Person):
     cursor.execute((""" UPDATE people SET name=%s, age=%s RETURNING * """),(people.name, people.age))
     updated_person = cursor.fetchone()
     conn.commit()
-    index = find_index_person(id)
-    if index == None:
+    if update_person == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"post with id: {id} does not exist")
-    person_dict = person.dict()
-    person_dict['id'] = id
-    my_people[index] = person_dict
-    return {"message": person_dict}
+   
+    return {"message": updated_post}
