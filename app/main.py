@@ -85,7 +85,7 @@ async def delete_person(id: int):
 
 @app.put("/api/person/{id}")
 async def update_person(id: int, person: Person):
-    cursor.execute((""" UPDATE persons SET name=%s, age=%s WHERE id = %s RETURNING * """),(person.name, person.age))
+    cursor.execute((""" UPDATE persons SET name=%s, age=%s WHERE id = %s RETURNING * """),(person.name, person.age, str(id)))
     updated_person = cursor.fetchone()
     conn.commit()
     if update_person == None:
