@@ -15,7 +15,8 @@ class Person(BaseModel):
     age: str
     email: str
 
-
+try:
+    conn = psycopg2.connect(host='localhost', database='HNGx', user='postgres', password='postgres', cursor_factory=RealDictConnection)
 
 my_people = [{"name": "Emma", "age": "23", "email": "emma@hngx.com",
               "id": 1}, {"name": "Sam", "age": "23", "email": "sam@hngx.com", "id": 2}]
