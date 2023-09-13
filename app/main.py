@@ -5,6 +5,7 @@ from random import randrange
 from starlette import status
 import requests
 import psycopg2
+impoort time
 
 from psycopg2.extras import RealDictConnection
 
@@ -28,6 +29,7 @@ while True:
     except Exception as error:
         print("Connection to database failed")
         print("Error:", error)
+        time
 
 
 my_people = [{"name": "Emma", "age": "23", "email": "emma@hngx.com",
