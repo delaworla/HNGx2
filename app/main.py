@@ -14,7 +14,7 @@ app = FastAPI()
 class Person(BaseModel):
     name: str
     age: str
-    email: str
+    
 
 
 while True:
