@@ -6,8 +6,7 @@ from starlette import status
 import requests
 import psycopg2
 import time
-
-from psycopg2.extras import RealDictConnection
+from psycopg2.extras import RealDictCursor
 
 app = FastAPI()
 
@@ -21,7 +20,7 @@ class Person(BaseModel):
 while True:
     try:
         conn = psycopg2.connect(host='localhost', database='HNGx', user='postgres',
-                                password='postgres', cursor_factory=RealDictConnection)
+                                password='postgres', cursor_factory=RealDictCursor)
         cursor = conn.cursor()
         print("Database was connected successfully")
         break
