@@ -45,8 +45,9 @@ def get_persons():
 async def create_person(person: Person):
     cursor.execute(""" INSERT INTO people(name,age) VALUES(%s,%s) RETURNING *""", (person.name, person.age))
     new_people =cursor.fetchone()
-    return {"data": new_people}
     conn.commit()
+    return {"data": new_people}
+    
 
 
 def find_person(id):
