@@ -14,7 +14,9 @@ class Person(BaseModel):
     name: str
     age: str
     email: str
-    
+
+
+
 my_people = [{"name": "Emma", "age": "23", "email": "emma@hngx.com",
               "id": 1}, {"name": "Sam", "age": "23", "email": "sam@hngx.com", "id": 2}]
 
