@@ -21,7 +21,7 @@ class Person(BaseModel):
 while True:
     try:
         conn = psycopg2.connect(host='localhost', database='HNGx', user='postgres',
-                                password='postgres', cursor_factory=RealDictConnection)
+                                password='pos6786798', cursor_factory=RealDictConnection)
         cursor = conn.cursor
         print("Database was connected successfully")
         break
