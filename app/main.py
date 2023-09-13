@@ -3,7 +3,8 @@ from pydantic import BaseModel
 from typing import Dict
 from random import randrange
 from starlette import status
-import requests, psycopg2
+import requests
+import psycopg2
 
 from psycopg2.extras import RealDictConnection
 
@@ -16,14 +17,17 @@ class Person(BaseModel):
     email: str
 
 
-try:
-    conn = psycopg2.connect(host='localhost', database='HNGx', user='postgres',
-                            password='postgres', cursor_factory=RealDictConnection)
-    cursor = conn.cursor
-    print("Database was connected successfully")
-except Exception as error:
-    print("Connection to database failed")
-    print("Error:", error)
+while True:
+    try:
+        conn = psycopg2.connect(host='localhost', database='HNGx', user='postgres',
+                                password='postsgres', cursor_factory=RealDictConnection)
+        cursor = conn.cursor
+        print("Database was connected successfully")
+        
+    except Exception as error:
+        print("Connection to database failed")
+        print("Error:", error)
+        
 
 my_people = [{"name": "Emma", "age": "23", "email": "emma@hngx.com",
               "id": 1}, {"name": "Sam", "age": "23", "email": "sam@hngx.com", "id": 2}]
