@@ -5,7 +5,7 @@ from random import randrange
 from starlette import status
 import requests
 import psycopg2
-impoort time
+import time
 
 from psycopg2.extras import RealDictConnection
 
