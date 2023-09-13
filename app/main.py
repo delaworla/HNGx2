@@ -58,7 +58,9 @@ def find_person(id):
 
 @app.get("/api/person/{id}")
 async def read_person(id: int, response: Response):
-    person = find_person(id)
+    cursor.execute(""" SELECT * FROM people WHERE id = %s""",(str(id)))
+    person = cursor.fetchone()
+    print(person)
     if not person:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"person with id: {id} was not found")
