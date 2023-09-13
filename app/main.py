@@ -29,7 +29,7 @@ while True:
     except Exception as error:
         print("Connection to database failed")
         print("Error:", error)
-        time
+        time.sleep(2)
 
 
 my_people = [{"name": "Emma", "age": "23", "email": "emma@hngx.com",
