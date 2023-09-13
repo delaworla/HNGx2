@@ -4,6 +4,8 @@ from typing import Dict
 from random import randrange
 from starlette import status
 import requests
+import psycopg2
+from psycopg2.extras import RealDictConnection
 
 app = FastAPI()
 
@@ -12,11 +14,9 @@ class Person(BaseModel):
     name: str
     age: str
     email: str
-
-
+    
 my_people = [{"name": "Emma", "age": "23", "email": "emma@hngx.com",
               "id": 1}, {"name": "Sam", "age": "23", "email": "sam@hngx.com", "id": 2}]
-
 
 @app.get("/api/persons")
 def get_persons():
