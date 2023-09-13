@@ -18,6 +18,7 @@ class Person(BaseModel):
 try:
     conn = psycopg2.connect(host='localhost', database='HNGx', user='postgres', password='postgres', cursor_factory=RealDictConnection)
     cursor = conn.cursor
+    print("Database was connected successfully")
 
 my_people = [{"name": "Emma", "age": "23", "email": "emma@hngx.com",
               "id": 1}, {"name": "Sam", "age": "23", "email": "sam@hngx.com", "id": 2}]
