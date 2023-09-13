@@ -52,7 +52,7 @@ def find_index_person(id):
             return i
 
 
-@app.delete("/api/person/{id}", status_code=status.HTTP_204_NO_CONTENT)
+@app.delete("/api/person/{id}", status_code = status.HTTP_204_NO_CONTENT)
 async def delete_person(id: int):
     index = find_index_person(id)
     if index == None:
