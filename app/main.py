@@ -37,8 +37,8 @@ my_people = [{"name": "Emma", "age": "23", "email": "emma@hngx.com",
 @app.get("/api/persons")
 def get_persons():
     cursor.execute("""SELECT * FROM people""")
-    people = cursor.fetchall()
-    return {"data": my_people}
+    peoples = cursor.fetchall()
+    return {"data": peoples}
 
 
 @app.post("/api/person/", status_code=status.HTTP_201_CREATED)
