@@ -36,6 +36,7 @@ my_people = [{"name": "Emma", "age": "23", "email": "emma@hngx.com",
 
 @app.get("/api/persons")
 def get_persons():
+    cursor
     return {"data": my_people}
 
 
