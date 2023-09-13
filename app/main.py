@@ -43,9 +43,9 @@ def get_persons():
 
 @app.post("/api/person/", status_code=status.HTTP_201_CREATED)
 async def create_person(person: Person):
-    cursor.execute(""" INSERT INTO people(name,age) VALUES(%s,%s)""", (people.name, people.age))
+    cursor.execute(""" INSERT INTO people(name,age) VALUES(%s,%s)""", (person.name, person.age))
     new_people =cursor.fetchone()
-    return {"data": new_people}
+    return {"data": "new_people"}
 
 
 def find_person(id):
