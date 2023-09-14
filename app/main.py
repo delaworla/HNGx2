@@ -61,9 +61,7 @@ async def create_person(person: Person, db:Session =Depends(get_db)):
 
 @app.get("/api/person/{id}")
 async def read_person(id: int, db:Session =Depends(get_db)):
-   person = db.query(models.Persons).filter(models.Persons.id == id).first()
-   print(person)
-   
+   person = db.query(models.Persons).filter(models.Persons.id == id).first()   
    if not person:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"person with id: {id} was not found")
