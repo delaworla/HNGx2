@@ -30,7 +30,7 @@ class Person(BaseModel):
     
 @app.get("/sqlalchemy")
 def test_person(db:Session =Depends(get_db)):
-    
+    return {"status": "Successful"}
     
 
 
