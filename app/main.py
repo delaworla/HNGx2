@@ -85,11 +85,11 @@ async def delete_person(id: int, db:Session =Depends(get_db)):
 
 @app.put("/api/person/{id}")
 async def update_person(id: int, person: Person, db:Session =Depends(get_db)):
-    updated_person = db.query(models.Persons).filter(models.Persons.id == id) 
-    update_person= update_person.first()
+    update_person = db.query(models.Persons).filter(models.Persons.id == id) 
+    updated_person= update_person.first()
     if updated_person == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"post with id: {id} does not exist")
-    person.update(person.dict(), synchronize_session=False)
+    update_person.update(person.dict(), synchronize_session=False)
     db.commit()
     return {"message": update_person.first()}
