@@ -1,9 +1,6 @@
 from fastapi import FastAPI, status, HTTPException, Response, Depends
 from pydantic import BaseModel
 from typing import Dict
-from random import randrange
-from starlette import status
-import requests
 import psycopg2
 import time
 from psycopg2.extras import RealDictCursor
