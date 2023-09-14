@@ -57,10 +57,7 @@ async def create_person(person: Person, db:Session =Depends(get_db)):
     
 
 
-def find_person(id):
-    for p in my_people:
-        if p['id'] == id:
-            return p
+
 
 @app.get("/api/person/{id}")
 async def read_person(id: int):
