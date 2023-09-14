@@ -69,10 +69,7 @@ async def read_person(id: int):
     return {"data": person}
 
 
-def find_index_person(id):
-    for i, p in enumerate(my_people):
-        if p['id'] == id:
-            return i
+
 
 
 @app.delete("/api/person/{id}", status_code=status.HTTP_204_NO_CONTENT)
