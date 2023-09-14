@@ -28,6 +28,10 @@ class Person(BaseModel):
     name: str
     age: str
     
+@app.get("/sqlalchemy")
+def test_person(db:Session =Depends(get_db)):
+    
+    
 
 
 while True:
