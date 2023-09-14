@@ -31,20 +31,6 @@ class Person(BaseModel):
 @app.get("/sqlalchemy")
 def test_person(db:Session =Depends(get_db)):
     return {"status": "Successful"}
-    
-
-
-while True:
-    try:
-        conn = psycopg2.connect(host='localhost', database='HNGx', user='postgres',
-                                password='postgres', cursor_factory=RealDictCursor)
-        cursor = conn.cursor()
-        print("Database was connected successfully")
-        break
-    except Exception as error:
-        print("Connection to database failed")
-        print("Error:", error)
-        time.sleep(2)
 
 
 my_people = [{"name": "Emma", "age": "23", "email": "emma@hngx.com",
