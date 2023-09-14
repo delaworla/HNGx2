@@ -60,13 +60,14 @@ async def create_person(person: Person, db:Session =Depends(get_db)):
 
 
 @app.get("/api/person/{id}")
-async def read_person(id: int):
-    cursor.execute(""" SELECT * FROM persons WHERE id = %s""",(str(id)))
-    person = cursor.fetchone()
-    if not person:
+async def read_person(id: int, db:Session =Depends(get_db)):
+   person = db.query(models.Persons).filter(models.Persons.id == id)
+   print(person)
+   
+   if not person:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"person with id: {id} was not found")
-    return {"data": person}
+   return {"data": person}
 
 
 
