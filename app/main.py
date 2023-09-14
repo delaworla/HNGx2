@@ -32,7 +32,8 @@ class Person(BaseModel):
     
 @app.get("/sqlalchemy")
 def test_person(db:Session =Depends(get_db)):
-    return {"status": "Successful"}
+    persons =db.query(models.Persons).all()
+    return {"data": persons}
 
 
 my_people = [{"name": "Emma", "age": "23", "email": "emma@hngx.com",
