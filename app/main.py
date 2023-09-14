@@ -92,4 +92,4 @@ async def update_person(id: int, person: Person, db:Session =Depends(get_db)):
                             detail=f"post with id: {id} does not exist")
     person.update({'name': 'Afuah', 'age':'33'}, synchronize_session=False)
     db.commit()
-    return {"message": updated_person}
+    return {"message": 'successful'}
