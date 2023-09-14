@@ -8,7 +8,7 @@ import psycopg2
 import time
 from psycopg2.extras import RealDictCursor
 from . import models
-from .database import engine, SessionLocal
+from .database import engine, get_db
 from sqlalchemy.orm import Session
 
 
