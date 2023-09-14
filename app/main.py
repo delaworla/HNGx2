@@ -1,10 +1,9 @@
 from fastapi import FastAPI, status, HTTPException, Response, Depends
-from pydantic import BaseModel
-from typing import Dict
 import psycopg2
+from typing import Dict
 import time
 from psycopg2.extras import RealDictCursor
-from . import models
+from . import models, schemas
 from .database import engine, get_db
 from sqlalchemy.orm import Session
 
@@ -13,27 +12,6 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-
-while True:
-    try:
-        conn = psycopg2.connect(host='localhost', database='HNGx', user='postgres',
-                                password='postgres', cursor_factory=RealDictCursor)
-        cursor = conn.cursor()
-        print("Database was connected successfully")
-        break
-    except Exception as error:
-        print("Connection to database failed")
-        print("Error:", error)
-        time.sleep(2)
-
-class Person(BaseModel):
-    name: str
-    age: str
-    
-@app.get("/sqlalchemy")
-def test_person(db:Session =Depends(get_db)):
-    persons = db.query(models.Persons).all()
-    return {"data": persons}
 
 
 my_people = [{"name": "Emma", "age": "23", "email": "emma@hngx.com",
@@ -47,7 +25,7 @@ def get_persons(db:Session =Depends(get_db)):
 
 
 @app.post("/api/person/", status_code=status.HTTP_201_CREATED)
-async def create_person(person: Person, db:Session =Depends(get_db)):
+async def create_person(person: schemas.Person, db:Session =Depends(get_db)):
     
     created_person = models.Persons(**person.dict())
     db.add(created_person)
@@ -84,7 +62,7 @@ async def delete_person(id: int, db:Session =Depends(get_db)):
 
 
 @app.put("/api/person/{id}")
-async def update_person(id: int, person: Person, db:Session =Depends(get_db)):
+async def update_person(id: int, person: schemas.Person, db:Session =Depends(get_db)):
     update_person = db.query(models.Persons).filter(models.Persons.id == id) 
     updated_person= update_person.first()
     if updated_person == None:
