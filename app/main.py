@@ -17,6 +17,17 @@ models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 
+while True:
+    try:
+        conn = psycopg2.connect(host='localhost', database='HNGx', user='postgres',
+                                password='postgres', cursor_factory=RealDictCursor)
+        cursor = conn.cursor()
+        print("Database was connected successfully")
+        break
+    except Exception as error:
+        print("Connection to database failed")
+        print("Error:", error)
+        time.sleep(2)
 
 class Person(BaseModel):
     name: str
@@ -51,7 +62,6 @@ def find_person(id):
     for p in my_people:
         if p['id'] == id:
             return p
-
 
 @app.get("/api/person/{id}")
 async def read_person(id: int):
