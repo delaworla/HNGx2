@@ -49,6 +49,9 @@ def get_persons(db:Session =Depends(get_db)):
 @app.post("/api/person/", status_code=status.HTTP_201_CREATED)
 async def create_person(person: Person, db:Session =Depends(get_db)):
     created_person = models.Persons(name=person.name, age=person.age)
+    db.add(created_person)
+    db.commit()
+    db.refresh(created_person)
     return {"data": created_person}
     
 
