@@ -32,7 +32,7 @@ class Person(BaseModel):
     
 @app.get("/sqlalchemy")
 def test_person(db:Session =Depends(get_db)):
-    persons =db.query(models.Persons).all()
+    persons = db.query(models.Persons).all()
     return {"data": persons}
 
 
