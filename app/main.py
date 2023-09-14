@@ -61,7 +61,7 @@ async def create_person(person: Person, db:Session =Depends(get_db)):
 
 @app.get("/api/person/{id}")
 async def read_person(id: int, db:Session =Depends(get_db)):
-   person = db.query(models.Persons).filter(models.Persons.id == id)
+   person = db.query(models.Persons).filter(models.Persons.id == id).first()
    print(person)
    
    if not person:
