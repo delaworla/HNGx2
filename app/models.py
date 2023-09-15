@@ -8,5 +8,5 @@ class Persons(Base):
     __tablename__ ="persons"
     id = Column(Integer, primary_key=True, nullable=False)
     name = Column(String, nullable=False)
-    age = Column(Integer,nullable=False)
+    
     created_at=Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
