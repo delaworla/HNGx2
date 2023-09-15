@@ -14,10 +14,6 @@ app = FastAPI()
 
 
 
-my_people = [{"name": "Emma", "age": "23", "email": "emma@hngx.com",
-              "id": 1}, {"name": "Sam", "age": "23", "email": "sam@hngx.com", "id": 2}]
-
-
 @app.get("/")
 def get_persons(db:Session =Depends(get_db)):
     persons = db.query(models.Persons).all()
