@@ -3,6 +3,7 @@ import psycopg2
 from typing import Dict
 import time
 from psycopg2.extras import RealDictCursor
+from sqlalchemy import asc
 from . import models, schemas
 from .database import engine, get_db
 from sqlalchemy.orm import Session
@@ -16,7 +17,7 @@ app = FastAPI()
 
 @app.get("/")
 def get_persons(db:Session =Depends(get_db)):
-    persons = db.query(models.Persons).all()
+    persons = db.query(models.Persons).order_by(asc(models.Persons.id)).all().all()
     return persons
 
 
