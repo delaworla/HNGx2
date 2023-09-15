@@ -49,7 +49,7 @@ async def read_person(user_id, db:Session =Depends(get_db)):
 
 
 @app.delete("/api/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_person(user_id: int, db:Session =Depends(get_db)):
+async def delete_person(user_id, db:Session =Depends(get_db)):
     if user_id.isdigit():
         person = db.query(models.Persons).filter(models.Persons.id == int(user_id)).first()
     else:
