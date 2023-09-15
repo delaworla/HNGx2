@@ -1,7 +1,6 @@
 from fastapi import FastAPI, status, HTTPException, Response, Depends
-import psycopg2
+
 from typing import Dict
-import time
 from psycopg2.extras import RealDictCursor
 from sqlalchemy import asc
 from . import models, schemas
