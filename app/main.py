@@ -60,6 +60,8 @@ async def delete_person(user_id, db:Session =Depends(get_db)):
     if person.first() == None:
          raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                              detail=f"post with id: {user_id} does not exist")
+    db.delete(person)
+    db.commit()
     
     return  person
     
