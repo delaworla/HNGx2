@@ -57,6 +57,10 @@ async def delete_person(user_id, db:Session =Depends(get_db)):
     if not person:
          raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                              detail=f"person with id: {user_id} was not found")
+    if person.first() == None:
+         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                             detail=f"post with id: {user_id} does not exist")
+    
     return  person
     
     
@@ -71,12 +75,23 @@ async def delete_person(user_id, db:Session =Depends(get_db)):
 
 
 @app.put("/api/{user_id}")
-async def update_person(user_id: int, person: schemas.Person, db:Session =Depends(get_db)):
-    update_person = db.query(models.Persons).filter(models.Persons.id == user_id) 
-    updated_person= update_person.first()
-    if updated_person == None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            detail=f"post with id: {user_id} does not exist")
-    update_person.update(person.dict(), synchronize_session=False)
+async def update_person(user_id, persons: schemas.UpdatePerson, db:Session =Depends(get_db)):
+    if user_id.isdigit():
+        person = db.query(models.Persons).filter(models.Persons.id == int(user_id)).first()
+    else:
+        person = db.query(models.Persons).filter(models.Persons.name == user_id.lower()).first()
+    if not person:
+         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                             detail=f"person with id: {user_id} was not found")
+    person = person.name.lower()
     db.commit()
-    return update_person.first()
+    return  person
+   
+    # update_person = db.query(models.Persons).filter(models.Persons.id == user_id) 
+    # updated_person= update_person.first()
+    # if updated_person == None:
+    #     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+    #                         detail=f"post with id: {user_id} does not exist")
+    # update_person.update(person.dict(), synchronize_session=False)
+    # db.commit()
+    # return update_person.first()
