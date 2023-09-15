@@ -22,7 +22,6 @@ def get_persons(db:Session =Depends(get_db)):
 
 @app.post("/api", status_code=status.HTTP_201_CREATED)
 async def create_person(person: schemas.Person, db:Session =Depends(get_db)):
-    
     created_person = models.Persons(**person.dict())
     db.add(created_person)
     db.commit()
@@ -46,8 +45,8 @@ async def read_person(id: int, db:Session =Depends(get_db)):
 
 
 @app.delete("/api/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_person(id: int, db:Session =Depends(get_db)):
-    deleted_person = db.query(models.Persons).filter(models.Persons.id == id)
+async def delete_person(user_id: int, db:Session =Depends(get_db)):
+    deleted_person = db.query(models.Persons).filter(models.Persons.id == user_id)
     if deleted_person.first() == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"post with id: {id} does not exist")
