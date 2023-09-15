@@ -20,3 +20,7 @@ def get_current_time():
 class CreateResponse(BaseModel):
     name: str
     created_at: str = get_current_time()
+    
+class UpdateResponse(BaseModel):
+    name: str
+    last_modified: str = get_current_time()
