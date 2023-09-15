@@ -1,7 +1,4 @@
-from fastapi import FastAPI, status, HTTPException, Response, Depends
-
-from typing import Dict
-from psycopg2.extras import RealDictCursor
+from fastapi import FastAPI, status, HTTPException, Depends
 from sqlalchemy import asc
 from . import models, schemas
 from .database import engine, get_db
