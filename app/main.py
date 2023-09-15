@@ -33,8 +33,8 @@ async def create_person(person: schemas.Person, db:Session =Depends(get_db)):
 
 
 @app.get("/api/{user_id}")
-async def read_person(id: int, db:Session =Depends(get_db)):
-   person = db.query(models.Persons).filter(models.Persons.id == id).first()   
+async def read_person(user_id: int, db:Session =Depends(get_db)):
+   person = db.query(models.Persons).filter(models.Persons.id == user_id).first()   
    if not person:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"person with id: {id} was not found")
@@ -57,8 +57,8 @@ async def delete_person(user_id: int, db:Session =Depends(get_db)):
 
 
 @app.put("/api/{user_id}")
-async def update_person(id: int, person: schemas.Person, db:Session =Depends(get_db)):
-    update_person = db.query(models.Persons).filter(models.Persons.id == id) 
+async def update_person(user_id: int, person: schemas.Person, db:Session =Depends(get_db)):
+    update_person = db.query(models.Persons).filter(models.Persons.id == user_id) 
     updated_person= update_person.first()
     if updated_person == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
