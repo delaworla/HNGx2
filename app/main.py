@@ -49,7 +49,7 @@ async def delete_person(user_id: int, db:Session =Depends(get_db)):
     deleted_person = db.query(models.Persons).filter(models.Persons.id == user_id)
     if deleted_person.first() == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            detail=f"post with id: {id} does not exist")
+                            detail=f"post with id: {user_id} does not exist")
     deleted_person.delete(synchronize_session=False)
     db.commit()
     return Response(status_code=status.HTTP_204_NO_CONTENT)
