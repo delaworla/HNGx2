@@ -17,6 +17,6 @@ class UpdatePerson(BaseModel):
 def get_current_time():
     return datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
 
-class Response(BaseModel):
+class CreateResponse(BaseModel):
     name: str
     created_at: str = get_current_time()
