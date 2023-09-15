@@ -6,16 +6,17 @@ from pytz import timezone
 class Person(BaseModel):
     name: str
 
-    
 
 class CreatePerson(BaseModel):
     name: str
 
-    
+
 class UpdatePerson(BaseModel):
     name: str
-    
-current_time_utc = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+
+def get_current_time():
+    return datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+
 class Response(BaseModel):
     name: str
-    created_at: current_time_utc
+    created_at: str = get_current_time()
