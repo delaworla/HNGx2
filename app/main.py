@@ -17,7 +17,7 @@ app = FastAPI()
 @app.get("/")
 def get_persons(db:Session =Depends(get_db)):
     persons = db.query(models.Persons).all()
-    return {"data": persons}
+    return persons
 
 
 @app.post("/api", status_code=status.HTTP_201_CREATED)
