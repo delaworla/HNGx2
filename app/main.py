@@ -39,7 +39,7 @@ async def read_person(id: int, db:Session =Depends(get_db)):
    if not person:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"person with id: {id} was not found")
-   return {"data": person}
+   return  person
 
 
 
@@ -66,4 +66,4 @@ async def update_person(id: int, person: schemas.Person, db:Session =Depends(get
                             detail=f"post with id: {id} does not exist")
     update_person.update(person.dict(), synchronize_session=False)
     db.commit()
-    return {"message": update_person.first()}
+    return update_person.first()
