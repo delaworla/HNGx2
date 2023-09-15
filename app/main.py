@@ -37,7 +37,7 @@ async def read_person(user_id: int, db:Session =Depends(get_db)):
    person = db.query(models.Persons).filter(models.Persons.id == user_id).first()   
    if not person:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            detail=f"person with id: {id} was not found")
+                            detail=f"person with id: {user_id} was not found")
    return  person
 
 
