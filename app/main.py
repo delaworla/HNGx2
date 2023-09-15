@@ -33,7 +33,7 @@ async def create_person(person: schemas.Person, db:Session =Depends(get_db)):
 
 
 
-@app.get("/api/user_id")
+@app.get("/api/{user_id}")
 async def read_person(user_id, db:Session =Depends(get_db)):
     if user_id.isdigit():
         person = db.query(models.Persons).filter(models.Persons.id == int(user_id)).first()
