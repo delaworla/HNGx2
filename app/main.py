@@ -33,13 +33,16 @@ async def create_person(person: schemas.Person, db:Session =Depends(get_db)):
 
 
 
-@app.get("/api/{user_id}")
-async def read_person(user_id: int, db:Session =Depends(get_db)):
-   person = db.query(models.Persons).filter(models.Persons.id == user_id).first()   
-   if not person:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            detail=f"person with id: {user_id} was not found")
-   return  person
+@app.get("/api/user_id")
+async def read_person(user_id, db:Session =Depends(get_db)):
+    if user_id.isdigit():
+        person = db.query(models.Persons).filter(models.Persons.id == int(user_id)).first()
+    else:
+        person = db.query(models.Persons).filter(models.Persons.name == user_id.lower()).first()
+    if not person:
+         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                             detail=f"person with id: {user_id} was not found")
+    return  person
 
 
 
