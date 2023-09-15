@@ -22,12 +22,12 @@ def get_persons(db:Session =Depends(get_db)):
 
 
 @app.post("/api", status_code=status.HTTP_201_CREATED)
-async def create_person(person: schemas.Person, db:Session =Depends(get_db)):
-    created_person = models.Persons(**person.dict())
-    db.add(created_person)
+async def create_person(persons: schemas.Person, db:Session =Depends(get_db)):
+    person = models.Persons(**persons.dict())
+    db.add(person)
     db.commit()
-    db.refresh(created_person)
-    return created_person
+    db.refresh(person)
+    return person
     
 
 
