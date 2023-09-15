@@ -1,30 +1,32 @@
-## FastAPI API Documentation
 
-**Version:** 0.1.0
+# FastAPI API Documentation
 
-### Endpoints
+**Version:** 1.0.0
 
-- **Index**
-  - **Summary:** Retrieve index information.
+## Endpoints
+
+- **All Users**
+  - **Summary:** Retrieve info on all users.
   - **HTTP Method:** GET
   - **Path:** `/`
   - **Responses:**
     - **200:** Successful Response (Content: JSON)
-    
+
 - **Create User**
   - **Summary:** Create a new user.
   - **HTTP Method:** POST
   - **Path:** `/api`
-  - **Request Body:** PersonCreate JSON object (Required)
+  - **Request Body:** CreatePerson JSON object (Required)
   - **Responses:**
-    - **200:** Successful Response (Content: Person JSON object)
+    - **201:** Successfully Created Response (Content: Person JSON object)
     - **422:** Validation Error (Content: HTTPValidationError JSON object)
 
 - **Get User**
-  - **Summary:** Retrieve user information by name.
+  - **Summary:** Retrieve user information by id or name.
   - **HTTP Method:** GET
-  - **Path:** `/api/user_id`
+  - **Path:** `/api/{user_id}`
   - **Query Parameter:**
+    - `id` (string, required): id of user
     - `name` (string, required): Name of the user
   - **Responses:**
     - **200:** Successful Response (Content: JSON)
@@ -33,23 +35,25 @@
 - **Delete User**
   - **Summary:** Delete a user by name.
   - **HTTP Method:** DELETE
-  - **Path:** `/api/user_id`
+  - **Path:** `/api/{user_id}`
   - **Query Parameter:**
+    - `id` (string, required): id of user
     - `name` (string, required): Name of the user
   - **Responses:**
-    - **200:** Successful Response (Content: JSON)
-    - **422:** Validation Error (Content: HTTPValidationError JSON object)
+    - **204:** No Content Response (Content: JSON)
+    - **404:** Not Found Error (Content: HTTPValidationError JSON object)
 
 - **Update User**
   - **Summary:** Update user information by name.
   - **HTTP Method:** PUT
   - **Path:** `/api/user_id`
   - **Query Parameter:**
+    - `id` (string, required): id of user
     - `name` (string, required): Name of the user to update
   - **Request Body:** PersonCreate JSON object (Required)
   - **Responses:**
     - **200:** Successful Response (Content: Person JSON object)
-    - **422:** Validation Error (Content: HTTPValidationError JSON object)
+    - **404:** Not Found Error (Content: HTTPValidationError JSON object)
 
 ### Data Schemas
 
@@ -58,7 +62,6 @@
     - `name` (string, required): Name of the user
     - `id` (integer): User ID
     - `createdAt` (string): Creation timestamp
-    - `updatedAt` (string): Last update timestamp
 
 - **PersonCreate**
   - Properties:
