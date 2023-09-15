@@ -27,7 +27,7 @@ async def create_person(person: schemas.Person, db:Session =Depends(get_db)):
     db.add(created_person)
     db.commit()
     db.refresh(created_person)
-    return {"data": created_person}
+    return created_person
     
 
 
