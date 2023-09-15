@@ -14,13 +14,16 @@ class CreatePerson(BaseModel):
 class UpdatePerson(BaseModel):
     name: str
 
-def get_current_time():
-    return datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+current_time_utc = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
 
-class CreateResponse(BaseModel):
+class Response(BaseModel):
     name: str
-    created_at: str = get_current_time()
+    created_at: str = current_time_utc
     
 class UpdateResponse(BaseModel):
     name: str
-    last_modified: str = get_current_time()
+    last_modified: str
+    
+    class Config:
+        orm_mode = True
+        

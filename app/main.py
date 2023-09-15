@@ -1,4 +1,5 @@
 from fastapi import FastAPI, status, HTTPException, Depends
+import pydantic
 from sqlalchemy import asc
 from . import models, schemas
 from .database import engine, get_db
@@ -17,13 +18,13 @@ def get_persons(db:Session =Depends(get_db)):
     return persons
 
 
-@app.post("/api", status_code=status.HTTP_201_CREATED, response_model=schemas.CreateResponse)
+@app.post("/api", status_code=status.HTTP_201_CREATED, response_model=schemas.Response)
 async def create_person(persons: schemas.CreatePerson, db:Session =Depends(get_db)):
     person = models.Persons(name=persons.name.lower())
     db.add(person)
     db.commit()
     db.refresh(person)
-    return person
+    return 
     
 
 @app.get("/api/{user_id}")
