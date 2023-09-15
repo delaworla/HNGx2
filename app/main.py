@@ -65,15 +65,7 @@ async def delete_person(user_id, db:Session =Depends(get_db)):
     db.commit()
     
     return  person
-    
-    
-    # deleted_person = db.query(models.Persons).filter(models.Persons.id == user_id)
-    # if deleted_person.first() == None:
-    #     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-    #                         detail=f"post with id: {user_id} does not exist")
-    # deleted_person.delete(synchronize_session=False)
-    # db.commit()
-    # return Response(status_code=status.HTTP_204_NO_CONTENT)
+
 
 
 
@@ -91,11 +83,4 @@ async def update_person(user_id, persons: schemas.UpdatePerson, db:Session =Depe
     db.commit()
     return persons
    
-    # update_person = db.query(models.Persons).filter(models.Persons.id == user_id) 
-    # updated_person= update_person.first()
-    # if updated_person == None:
-    #     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-    #                         detail=f"post with id: {user_id} does not exist")
-    # update_person.update(person.dict(), synchronize_session=False)
-    # db.commit()
-    # return update_person.first()
+   
