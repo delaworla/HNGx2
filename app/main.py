@@ -26,9 +26,6 @@ async def create_person(persons: schemas.Person, db:Session =Depends(get_db)):
     return person
     
 
-
-
-
 @app.get("/api/{user_id}")
 async def read_person(user_id, db:Session =Depends(get_db)):
     if user_id.isdigit():
@@ -42,9 +39,6 @@ async def read_person(user_id, db:Session =Depends(get_db)):
     return  person
 
 
-
-
-
 @app.delete("/api/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_person(user_id, db:Session =Depends(get_db)):
     if user_id.isdigit():
@@ -54,13 +48,10 @@ async def delete_person(user_id, db:Session =Depends(get_db)):
     if not person:
          raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                              detail=f"person with id: {user_id} was not found")
-    
     db.delete(person)
     db.commit()
     
     return  person
-
-
 
 
 @app.put("/api/{user_id}")
@@ -72,9 +63,6 @@ async def update_person(user_id, persons: schemas.UpdatePerson, db:Session =Depe
     if not person:
          raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                              detail=f"person with id: {user_id} was not found")
-    
     person.name = persons.name.lower()
     db.commit()
     return persons
-   
-   
