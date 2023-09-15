@@ -12,3 +12,7 @@ class CreatePerson(BaseModel):
     
 class UpdatePerson(BaseModel):
     name: str
+    
+
+class Response(BaseModel):
+    
