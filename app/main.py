@@ -50,13 +50,23 @@ async def read_person(user_id, db:Session =Depends(get_db)):
 
 @app.delete("/api/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_person(user_id: int, db:Session =Depends(get_db)):
-    deleted_person = db.query(models.Persons).filter(models.Persons.id == user_id)
-    if deleted_person.first() == None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            detail=f"post with id: {user_id} does not exist")
-    deleted_person.delete(synchronize_session=False)
-    db.commit()
-    return Response(status_code=status.HTTP_204_NO_CONTENT)
+    if user_id.isdigit():
+        person = db.query(models.Persons).filter(models.Persons.id == int(user_id)).first()
+    else:
+        person = db.query(models.Persons).filter(models.Persons.name == user_id.lower()).first()
+    if not person:
+         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                             detail=f"person with id: {user_id} was not found")
+    return  person
+    
+    
+    # deleted_person = db.query(models.Persons).filter(models.Persons.id == user_id)
+    # if deleted_person.first() == None:
+    #     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+    #                         detail=f"post with id: {user_id} does not exist")
+    # deleted_person.delete(synchronize_session=False)
+    # db.commit()
+    # return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
 
