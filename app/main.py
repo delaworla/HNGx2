@@ -42,6 +42,7 @@ async def read_person(user_id, db:Session =Depends(get_db)):
     if not person:
          raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                              detail=f"person with id: {user_id} was not found")
+         
     return  person
 
 
@@ -88,6 +89,7 @@ async def update_person(user_id, persons: schemas.UpdatePerson, db:Session =Depe
     
     person.name = persons.name.lower()
     db.commit()
+    return persons
    
     # update_person = db.query(models.Persons).filter(models.Persons.id == user_id) 
     # updated_person= update_person.first()
