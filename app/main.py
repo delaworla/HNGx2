@@ -18,13 +18,13 @@ my_people = [{"name": "Emma", "age": "23", "email": "emma@hngx.com",
               "id": 1}, {"name": "Sam", "age": "23", "email": "sam@hngx.com", "id": 2}]
 
 
-@app.get("/api/persons")
+@app.get("/")
 def get_persons(db:Session =Depends(get_db)):
     persons = db.query(models.Persons).all()
     return {"data": persons}
 
 
-@app.post("/api/person/", status_code=status.HTTP_201_CREATED)
+@app.post("/api", status_code=status.HTTP_201_CREATED)
 async def create_person(person: schemas.Person, db:Session =Depends(get_db)):
     
     created_person = models.Persons(**person.dict())
@@ -37,7 +37,7 @@ async def create_person(person: schemas.Person, db:Session =Depends(get_db)):
 
 
 
-@app.get("/api/person/{id}")
+@app.get("/api/user_id")
 async def read_person(id: int, db:Session =Depends(get_db)):
    person = db.query(models.Persons).filter(models.Persons.id == id).first()   
    if not person:
@@ -49,7 +49,7 @@ async def read_person(id: int, db:Session =Depends(get_db)):
 
 
 
-@app.delete("/api/person/{id}", status_code=status.HTTP_204_NO_CONTENT)
+@app.delete("/api/user_id", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_person(id: int, db:Session =Depends(get_db)):
     deleted_person = db.query(models.Persons).filter(models.Persons.id == id)
     if deleted_person.first() == None:
@@ -61,7 +61,7 @@ async def delete_person(id: int, db:Session =Depends(get_db)):
 
 
 
-@app.put("/api/person/{id}")
+@app.put("/api/user_id")
 async def update_person(id: int, person: schemas.Person, db:Session =Depends(get_db)):
     update_person = db.query(models.Persons).filter(models.Persons.id == id) 
     updated_person= update_person.first()
