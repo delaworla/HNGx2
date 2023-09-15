@@ -33,7 +33,7 @@ async def create_person(person: schemas.Person, db:Session =Depends(get_db)):
 
 
 
-@app.get("/api/user_id")
+@app.get("/api/{user_id}")
 async def read_person(id: int, db:Session =Depends(get_db)):
    person = db.query(models.Persons).filter(models.Persons.id == id).first()   
    if not person:
@@ -45,7 +45,7 @@ async def read_person(id: int, db:Session =Depends(get_db)):
 
 
 
-@app.delete("/api/user_id", status_code=status.HTTP_204_NO_CONTENT)
+@app.delete("/api/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_person(id: int, db:Session =Depends(get_db)):
     deleted_person = db.query(models.Persons).filter(models.Persons.id == id)
     if deleted_person.first() == None:
@@ -57,7 +57,7 @@ async def delete_person(id: int, db:Session =Depends(get_db)):
 
 
 
-@app.put("/api/user_id")
+@app.put("/api/{user_id}")
 async def update_person(id: int, person: schemas.Person, db:Session =Depends(get_db)):
     update_person = db.query(models.Persons).filter(models.Persons.id == id) 
     updated_person= update_person.first()
