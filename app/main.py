@@ -62,7 +62,7 @@ async def update_person(user_id: int, person: schemas.Person, db:Session =Depend
     updated_person= update_person.first()
     if updated_person == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            detail=f"post with id: {id} does not exist")
+                            detail=f"post with id: {user_id} does not exist")
     update_person.update(person.dict(), synchronize_session=False)
     db.commit()
     return update_person.first()
