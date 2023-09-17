@@ -63,7 +63,7 @@
     - `id` (integer): User ID
     - `createdAt` (string): Creation timestamp
 
-- **PersonCreate**
+- **CreatePerson**
   - Properties:
     - `name` (string, required): Name of the user
 
