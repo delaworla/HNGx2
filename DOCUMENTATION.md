@@ -8,7 +8,7 @@
 - **All Users**
   - **Summary:** Retrieve info on all users.
   - **HTTP Method:** GET
-  - **Path:** `/`
+  - **Path:** `/api`
   - **Responses:**
     - **200:** Successful Response (Content: JSON)
 
