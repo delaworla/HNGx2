@@ -45,7 +45,7 @@ Before running the API, you need the following prerequisites:
 
    ```bash
    git clone https://github.com/delaworla/HNGx2.git
-   cd HNG_CRUD
+   cd HNGx2
 
    ```
 
