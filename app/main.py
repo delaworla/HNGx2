@@ -24,6 +24,8 @@ async def create_person(persons: schemas.Person, db:Session =Depends(get_db)):
     db.add(person)
     db.commit()
     db.refresh(person)
+    return person
+
     
 
 @app.get("/api/{user_id}")

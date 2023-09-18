@@ -6,9 +6,11 @@ class Person(BaseModel):
 
 
 class Response(BaseModel):
-    id:int
+    id: int
     name: str 
     created_at: datetime
+   
+   
     class Config:
         orm_mode = True
     
@@ -17,4 +19,9 @@ class UpdateResponse(Response):
     
     class Config:
         orm_mode = True
-        
+
+
+class Responses(BaseModel):
+    name: str
+    id: str
+    created_at: datetime
