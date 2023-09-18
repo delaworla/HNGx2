@@ -14,7 +14,7 @@ class Response(BaseModel):
     class Config:
         orm_mode = True
     
-class UpdateResponse(Response):
+class UpdateResponse(BaseModel):
     id: str
     name: str
     last_modified: datetime
