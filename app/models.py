@@ -6,7 +6,7 @@ from sqlalchemy.sql.sqltypes import TIMESTAMP
 
 class Persons(Base):
     __tablename__ ="persons"
-    id = Column(Integer, primary_key=True, nullable=False, index=True)
+    id = Column(Integer, primary_key=True, nullable=False)
     name = Column(String, nullable=False, unique=True)
     created_at=Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
     last_modified=Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
