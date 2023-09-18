@@ -25,6 +25,6 @@ class UpdateResponse(Response):
 
 
 class Responses(BaseModel):
-    name: str
     id: str
+    name: str
     created_at: datetime
