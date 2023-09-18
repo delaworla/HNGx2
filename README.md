@@ -19,9 +19,9 @@ This project implements a simple REST API for managing "person" resources, inclu
   - [Testing](#testing)
   - [Dynamic Parameter Handling](#dynamic-parameter-handling)
   - [Documentation](#documentation)
-  - [GitHub Repository](#github-repository)
-  - [Hosting](#hosting)
-  - [Acceptance Criteria](#acceptance-criteria)
+  - [GitHub Repository] (#github-repository)
+  - [Hosting] (#hosting)
+  - [Acceptance Criteria] (#acceptance-criteria)
 
 ## Features
 
@@ -44,7 +44,7 @@ Before running the API, you need the following prerequisites:
 1. Clone the GitHub repository to your local machine:
 
    ```bash
-   git clone https://github.com/franciedigital/HNG_CRUD.git
+   git clone https://github.com/delaworla/HNGx2.git
    cd HNG_CRUD
 
    ```
