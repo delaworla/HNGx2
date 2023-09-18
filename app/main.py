@@ -56,7 +56,7 @@ async def delete_person(user_id, db:Session =Depends(get_db)):
     return  person
 
 
-@app.put("/api/{user_id}", response_model=schemas.UpdateResponse)
+@app.put("/api/{user_id}")
 async def update_person(user_id, persons: schemas.Person, db:Session =Depends(get_db)):
     if user_id.isdigit():
         person = db.query(models.Persons).filter(models.Persons.id == int(user_id)).first()
@@ -68,6 +68,11 @@ async def update_person(user_id, persons: schemas.Person, db:Session =Depends(ge
     person.name = persons.name.lower()
     db.commit()
     current_time_utc = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
-
+    response_json = {
+                "name": person.name,
+                "last_modified": current_time_utc,
+                "message": "Person updated Successfuly"
+            }
     
-    return person.name
+    return response_json
+    

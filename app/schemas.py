@@ -10,20 +10,7 @@ class Response(BaseModel):
     name: str 
     created_at: datetime
    
-   
-    class Config:
-        orm_mode = True
-    
-class UpdateResponse(BaseModel):
-    id: str
-    name: str
-    last_modified: datetime
-    
     class Config:
         orm_mode = True
 
 
-class Responses(BaseModel):
-    id: str
-    name: str
-    created_at: datetime
