@@ -56,7 +56,7 @@ async def delete_person(user_id, db:Session =Depends(get_db)):
     return  person
 
 
-@app.put("/api/{user_id}")
+@app.put("/api/{user_id}", response_model=schemas.UpdateResponse)
 async def update_person(user_id, persons: schemas.Person, db:Session =Depends(get_db)):
     if user_id.isdigit():
         person = db.query(models.Persons).filter(models.Persons.id == int(user_id)).first()
