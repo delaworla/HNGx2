@@ -1,0 +1,8 @@
+fastapi==0.103.1
+pydantic==1.9.2
+python-dotenv==0.21.1
+Requests==2.31.0
+SQLAlchemy==2.0.20
+#SQLAlchemy==1.4.40
+uvicorn==0.22.0
+psycopg2==2.9.7
