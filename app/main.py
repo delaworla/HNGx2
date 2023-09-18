@@ -69,9 +69,5 @@ async def update_person(user_id, persons: schemas.Person, db:Session =Depends(ge
     db.commit()
     current_time_utc = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
 
-    response_json = {
-                "name": person.name,
-                "last_updated": current_time_utc,
-                "message": f"New name is {person.name}"
-            }
-    return response_json
+    
+    return person.name
