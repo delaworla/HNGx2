@@ -5,9 +5,8 @@ class Person(BaseModel):
     name: str
 
 
-class Response(BaseModel):
+class Response(Person):
     id: int
-    name: str 
     created_at: datetime
    
     class Config:
