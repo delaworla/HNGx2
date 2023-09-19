@@ -14,7 +14,7 @@ app = FastAPI()
 
 
 @app.get("/api", response_description="All Persons", response_model=List[schemas.Response])
-def get_persons(db:Session =Depends(get_db)):
+def get_persons(db:Session = Depends(get_db)):
     persons = db.query(models.Persons).order_by(asc(models.Persons.id)).all()
     return persons
 
