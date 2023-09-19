@@ -13,3 +13,4 @@ class Response(Person):
         orm_mode = True
 
 
+class UserCreate
