@@ -13,4 +13,5 @@ class Response(Person):
         orm_mode = True
 
 
-class UserCreate
+class UserCreate:
+    email:
