@@ -11,3 +11,11 @@ class Persons(Base):
     created_at=Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
     last_modified=Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
     
+class Users(Base):
+    __tablename__ ="users"
+    id = Column(Integer, primary_key=True, nullable=False)
+    name = Column(String, nullable=False, unique=True)
+    created_at=Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
+    
+    last_modified=Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
+    
