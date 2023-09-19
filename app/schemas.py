@@ -14,5 +14,5 @@ class Response(Person):
 
 
 class UserCreate:
-    email: 
+    email: EmailStr
     password: str
