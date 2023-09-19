@@ -79,4 +79,5 @@ async def update_person(user_id, persons: schemas.Person, db:Session =Depends(ge
     
 
 @app.post("/users", status_code=status.HTTP_201_CREATED)
-async def create_user(db:Session =Depends(get_db)):
+async def create_user(user: schemas.UserCreate, db:Session =Depends(get_db)):
+    
