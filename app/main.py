@@ -12,7 +12,7 @@ app = FastAPI()
 
 
 
-@app.get("/api")
+@app.get("/api", response_description="All Persons")
 def get_persons(db:Session =Depends(get_db)):
     persons = db.query(models.Persons).order_by(asc(models.Persons.id)).all()
     return persons
